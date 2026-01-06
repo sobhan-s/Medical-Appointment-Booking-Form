@@ -4,11 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>sobhan sahoo pratice html</h1>
+
+    <div class="main_container">
+        <!-- left section =  side bar -->
+        <div class="left_part">
+            <h1>
+                Book Appointment
+            </h1>
+            <p>Please fill the form to schedule an Appointment</p>
+            <div class="progress_section">
+                <div class="progress_items active" step="1">
+                    <div class="progress_step_number"><span>1</span></div>
+                    <div class="progress_step_info">
+                        <h3>Personal Info</h3>
+                        <p>Basic details</p>
+                    </div>
+                </div>
+                <div class="progress_items active" step="2">
+                    <div class="progress_step_number"><span>2</span></div>
+                    <div class="progress_step_info">
+                        <h3>Appointment</h3>
+                        <p>Date & time</p>
+                    </div>
+                </div>
+                <div class="progress_items active" step="3">
+                    <div class="progress_step_number"><span>3</span></div>
+                    <div class="progress_step_info">
+                        <h3>Medical Info</h3>
+                        <p>Health details</p>
+                    </div>
+                </div>
+                <div class="progress_items active" step="4">
+                    <div class="progress_step_number"><span>4</span></div>
+                    <div class="progress_step_info">
+                        <h3>Final Details</h3>
+                        <p>Confirmation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- right part = main form -->
+        <div class="right_part">
+            <form class="appointmentForm">
+                <div class="form_step active step="1" >
+                    <h2>Baisc information</h2>
+                    <div class="form">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="sobhan.email@example.com" 
+                            required
+                        >
+                        <label>
+                            <span class="required">*</span>
+                        </label>
+                        <span class="error">Please enter a valid email address</span>
+                    </div>
+
+                    <div class="form">
+                        <input 
+                            type="text" 
+                            name="name" 
+                            id="name" 
+                            placeholder="sobhan sahoo" 
+                            required
+                        >
+                        <label>
+                            <span class="required">*</span>
+                        </label>
+                        <span class="error">Please enter your name</span>
+                    </div>
+
+                    <div class="form">
+                        <input 
+                            type="tel" 
+                            name="phone" 
+                            id="phone" 
+                            placeholder="+91 9040006148" 
+                            required>
+                        <label>Phone Number <span class="required">*</span></label>
+                        <span class="error">Please enter a valid phone number</span>
+                    </div>
+
+                    <div class="form">
+                        <label>Date of Last Visit</label>
+                        <input type="date" name="lastVisit" id="lastVisit">
+                    </div>
+
+                    <div class="next_form">
+                        <button 
+                            type="button" 
+                            class="btn next_btn" 
+                            id="next1"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form_step active step="2" >
+                    <h2>Appointment details</h2>
+
+                    <div class="form">
+                        <select name="doctor" id="doctor" required>
+                            <option value="">Select a doctor</option>
+                            <option value="Dr sobhan1">Dr sobhan1 - doctor 1</option>
+                            <option value="Dr sobhan2">Dr sobhan2 - doctor 2</option>
+                            <option value="Dr sobhan3">Dr sobhan3 - doctor 3</option>
+                            <option value="Dr sobhan4">Dr sobhan4 - doctor 4</option>
+                            <option value="Dr sobhan5">Dr sobhan5 - doctor 5</option>
+                        </select>
+                        <label>
+                            <span class="required">*</span>
+                        </label>
+                        <span class="error">Please select a doctor</span>
+                    </div>
+
+                    <div class="form">
+                        <label>Preferred Date <span class="required">*</span></label>
+                        <input 
+                            type="date" 
+                            name="appDate" 
+                            id="appDate" 
+                            required
+                        >
+                        <span class="error">Please select a date</span>
+                    </div>
+                </div>
+
+                <div class="form_step active step="3" >
+
+                </div>
+
+                <div class="form_step active step="4" >
+
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
