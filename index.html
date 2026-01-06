@@ -20,28 +20,24 @@
                     <div class="progress_step_number"><span>1</span></div>
                     <div class="progress_step_info">
                         <h3>Personal Info</h3>
-                        <p>Basic details</p>
                     </div>
                 </div>
                 <div class="progress_items active" step="2">
                     <div class="progress_step_number"><span>2</span></div>
                     <div class="progress_step_info">
                         <h3>Appointment</h3>
-                        <p>Date & time</p>
                     </div>
                 </div>
                 <div class="progress_items active" step="3">
                     <div class="progress_step_number"><span>3</span></div>
                     <div class="progress_step_info">
                         <h3>Medical Info</h3>
-                        <p>Health details</p>
                     </div>
                 </div>
                 <div class="progress_items active" step="4">
                     <div class="progress_step_number"><span>4</span></div>
                     <div class="progress_step_info">
                         <h3>Final Details</h3>
-                        <p>Confirmation</p>
                     </div>
                 </div>
             </div>
@@ -50,7 +46,7 @@
         <!-- right part = main form -->
         <div class="right_part">
             <form class="appointmentForm">
-                <div class="form_step active step="1" >
+                <div class="form_step active" step="1" >
                     <h2>Baisc information</h2>
                     <div class="form">
                         <input 
@@ -107,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="form_step active step="2" >
+                <div class="form_step" step="2" >
                     <h2>Appointment details</h2>
 
                     <div class="form">
@@ -129,20 +125,236 @@
                         <label>Preferred Date <span class="required">*</span></label>
                         <input 
                             type="date" 
-                            name="appDate" 
-                            id="appDate" 
+                            name="appointmentDate" 
+                            id="appointmentDate" 
                             required
                         >
                         <span class="error">Please select a date</span>
                     </div>
+
+                    <div class="form">
+                        <label>Preferred Time Slot <span class="required">*</span></label>
+                        <select name="timeSlot" id="timeSlot" required>
+                            <option value="">Select a time slot</option>
+                            <option value="09:00-10:00">09:00 AM - 10:00 AM</option>
+                            <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
+                            <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+                            <option value="14:00-15:00">02:00 PM - 03:00 PM</option>
+                            <option value="15:00-16:00">03:00 PM - 04:00 PM</option>
+                            <option value="16:00-17:00">04:00 PM - 05:00 PM</option>
+                        </select>
+                        <span class="error">Please select a time slot</span>
+                    </div>
+
+                    <div class="form">
+                        <label>resonForVisit<span class="required">*</span></label>
+                        <textarea 
+                            name="resonForVisit" 
+                            id="resonForVisit"
+                            rows="5"
+                            cols="30"
+                            minlength="10"
+                            maxlength="200"
+                        ></textarea>
+                        <span class="error">Please Enter your Reson , why do u want to visit</span>
+                    </div>
+
+                    <div class="next_form">
+                        <button type="button" class="btn prev_btn" id="prev2">Previous</button>
+                        <button type="button" class="btn btn next_btn" id="next2">Next</button>
+                    </div>
+                </div>
+                
+                <div class="form_step" step="3">
+                    <h2>Medical Information</h2>
+
+                    <div class="form">
+                        <label>Current Concerns <span class="required">*</span></label>
+                        <div class="checkbox_group">
+                            <div class="checkbox_items">
+                                <input 
+                                    type="checkbox" 
+                                    name="healthConcerns" 
+                                    id="concern1" 
+                                    value="Fever"
+                                >
+                                <label for="concern1">Fever</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="checkbox" 
+                                    name="healthConcerns" 
+                                    id="concern2" 
+                                    value="cough"
+                                >
+                                <label for="concern2">cough</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="checkbox" 
+                                    name="healthConcerns" 
+                                    id="concern1" 
+                                    value="cancer"
+                                >
+                                <label for="concern1">cancer</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="checkbox" 
+                                    name="healthConcerns" 
+                                    id="concern1" 
+                                    value="piles"
+                                >
+                                <label for="concern1">piles</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="checkbox" 
+                                    name="healthConcerns" 
+                                    id="concern1" 
+                                    value="others"
+                                >
+                                <label for="concern1">others</label>
+                            </div>
+                        </div>
+                        <span class="error">Please select at least one health concern</span>
+                    </div>
+
+                    <div class="form">
+                        <label>Current Medications</label>
+                        <textarea 
+                            name="medications" 
+                            id="medications" 
+                            placeholder="List any medications you're currently taking"
+                        >
+                        </textarea>
+                        <label><span class="optional">(optional)</span></label>
+                    </div>
+
+                    <div class="form">
+                        <label>Allergies</label>
+                        <textarea 
+                            name="allergies" 
+                            id="allergies" 
+                            placeholder="List any known allergies"
+                        >
+                        </textarea>
+                        <label><span class="optional">(optional)</span></label>
+                    </div>
+
+                    <div class="next_form">
+                        <button type="button" class="btn prev_btn" id="prev3">Previous</button>
+                        <button type="button" class="btn next_btn" id="next3">Next</button>
+                    </div>
                 </div>
 
-                <div class="form_step active step="3" >
+                <div class="form_step" step="4" >
+                    <h2>Final Details</h2>
+                    <div class="form">
+                        <label>Previous Medical Record <span class="required">*</span></label>
+                        <div class="radio">
+                            <div class="radio_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioMedicalRecords" 
+                                    id="record1" 
+                                    value="X-rays"
+                                >
+                                <label for="record1">X-rays</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioMedicalRecords" 
+                                    id="record2" 
+                                    value="MRIs"
+                                >
+                                <label for="record2">MRIs</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioMedicalRecords" 
+                                    id="record3" 
+                                    value="Ultrasound recordings"
+                                >
+                                <label for="Ultrasound recordings">cancer</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioMedicalRecords" 
+                                    id="record4" 
+                                    value="Mammograms"
+                                >
+                                <label for="record4">Mammograms</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioMedicalRecords" 
+                                    id="record5" 
+                                    value="others"
+                                >
+                                <label for="record5">others</label>
+                            </div>
+                        </div>
+                        <span class="error">Please select at least one medical record</span>
+                    </div>
 
-                </div>
+                    <div class="form">
+                        <label>Consultation Type<span class="required">*</span></label>
+                        <div class="radio">
+                            <div class="radio_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioCousultationType" 
+                                    id="counsultingType1" 
+                                    value="Routine/Follow-up"
+                                >
+                                <label for="Routine/Follow-up">X-rays</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioCousultationType" 
+                                    id="counsultingType2" 
+                                    value="Urgent/Acute"
+                                >
+                                <label for="Urgent/Acute">MRIs</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioCousultationType" 
+                                    id="counsultingType3" 
+                                    value="Specialist/Inter-Physicians"
+                                >
+                                <label for="Specialist/Inter-Physician">cancer</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioCousultationType" 
+                                    id="counsultingType4" 
+                                    value="Telemedicine"
+                                >
+                                <label for="Telemedicine">Mammograms</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input 
+                                    type="radio" 
+                                    name="radioCousultationType" 
+                                    id="counsultingType5" 
+                                    value="others"
+                                >
+                                <label for="record5">others</label>
+                            </div>
+                        </div>
+                        <span class="error">Please select at least one medical record</span>
+                    </div>
 
-                <div class="form_step active step="4" >
-
+                    Consultation Type
                 </div>
             </form>
         </div>
