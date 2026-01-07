@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e1e7e2;
+    min-height: 100vh;
+    padding: 40px;
+}
+
+.main_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    background: white;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.left_part {
+    width: 320px;
+    background: radial-gradient(circle, #2e7d32, #1b5e20);
+    padding: 40px 30px;
+    color: white;
+    position: relative;
+}
+
+.left_part h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.left_part p {
+    font-size: 15px;
+}
+
+.progress_section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.progress_items {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.progress_items.active {
+    opacity: 0.5;
+}
+
+.progress_items.complited {
+    opacity: 0.9;
+}
+
+.progress_step_number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #c0c0c08c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+.progress_items.active .progress_step_number {
+    background: white;
+    color: #2e7d32;
+    transform: scale(1.1);
+}
+
+.progress_items.complited .progress_step_number {
+    background: #4caf50;
+    color: white;
+}
+
+.progress_items.complited .progress_step_number::before {
+    content: '✔';
+}
+
+.progress_items.complited .progress_step_number span {
+    display: none;
+}
+
+.right_part {
+    flex: 1;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form_step {
+    display: none;
+    animation: slide 0.5s ease;
+}
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.form_step.active {
+    display: block;
+}
+
+.form_step .basicInfo,
+.form_step .appointmentDetailsHeader,
+.form_step .medicalInfoHeader,
+.form_step .finalDetailHeader
+{
+    color: #2e7d32;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.form_step .form #email {
+    margin-top: 5px;
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition:  0.3s ease;
+}
+
+.form_step .form #email:focus {
+    outline: none;
+    border: 2px solid green;
+}
+
+.right_part label {
+    display: block;
+    margin-bottom: 8px;
+    color: black;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.right_part label .required {
+    color: #f44336;
+    margin-left: 3px;
+}
+
+.form .error {
+    color: #f44336;
+}
+
+.right_part .form #name,
+.right_part .form #phone,
+.right_part .form #lastVisit,
+.right_part .form #doctor,
+.right_part .form #appointmentDate,
+.right_part .form #timeSlot,
+.right_part .form #resonForVisit,
+.right_part .form #medications,
+.right_part .form #allergies
+ {
+    margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition:  0.3s ease;
+}
+
+.form_step .form #name:focus,
+.form_step .form #phone:focus,
+.right_part .form #lastVisit:focus,
+.right_part .form #appointmentDate:focus,
+.right_part .form #timeSlot:focus,
+.right_part .form #resonForVisit:focus,
+.right_part .form #medications,
+.right_part .form #allergies
+{
+    outline: none;
+    border: 2px solid green;
+}
+
+.next_form  button{
+    margin-top: 10px;
+    padding: 17px 36px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.right_part .form #timeSlot option {
+    padding: 10px;
+}
+
+.checkbox_group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkbox_items {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox_items input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.radio_groups {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+}
+
+
+.radio_item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.radio_items input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+

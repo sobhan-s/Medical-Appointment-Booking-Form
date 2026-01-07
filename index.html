@@ -46,9 +46,12 @@
         <!-- right part = main form -->
         <div class="right_part">
             <form class="appointmentForm">
-                <div class="form_step active" step="1" >
-                    <h2>Baisc information</h2>
+                <div class="form_step" step="1" >
+                    <h2 class="basicInfo">Baisc information</h2>
                     <div class="form">
+                           <label>
+                                Email <span class="required">*</span>
+                            </label>
                         <input 
                             type="email" 
                             name="email" 
@@ -56,13 +59,14 @@
                             placeholder="sobhan.email@example.com" 
                             required
                         >
-                        <label>
-                            <span class="required">*</span>
-                        </label>
+                        
                         <span class="error">Please enter a valid email address</span>
                     </div>
 
                     <div class="form">
+                        <label>
+                            Full Name <span class="required">*</span>
+                        </label>
                         <input 
                             type="text" 
                             name="name" 
@@ -70,26 +74,30 @@
                             placeholder="sobhan sahoo" 
                             required
                         >
-                        <label>
-                            <span class="required">*</span>
-                        </label>
+                        
                         <span class="error">Please enter your name</span>
                     </div>
 
                     <div class="form">
+                        <label>Phone Number <span class="required">*</span></label>
                         <input 
                             type="tel" 
                             name="phone" 
                             id="phone" 
                             placeholder="+91 9040006148" 
-                            required>
-                        <label>Phone Number <span class="required">*</span></label>
+                            required
+                        >
                         <span class="error">Please enter a valid phone number</span>
                     </div>
 
                     <div class="form">
                         <label>Date of Last Visit</label>
-                        <input type="date" name="lastVisit" id="lastVisit">
+                        <input 
+                            type="date" 
+                            name="lastVisit" 
+                            id="lastVisit">
+                        <span class="error">Please enter a date for booking .</span>
+
                     </div>
 
                     <div class="next_form">
@@ -98,15 +106,18 @@
                             class="btn next_btn" 
                             id="next1"
                         >
-                            Next
+                            Next →
                         </button>
                     </div>
                 </div>
 
                 <div class="form_step" step="2" >
-                    <h2>Appointment details</h2>
+                    <h2 class="appointmentDetailsHeader">Appointment details</h2>
 
                     <div class="form">
+                        <label >select a doctor
+                            <span class="required">*</span>
+                        </label>
                         <select name="doctor" id="doctor" required>
                             <option value="">Select a doctor</option>
                             <option value="Dr sobhan1">Dr sobhan1 - doctor 1</option>
@@ -115,9 +126,7 @@
                             <option value="Dr sobhan4">Dr sobhan4 - doctor 4</option>
                             <option value="Dr sobhan5">Dr sobhan5 - doctor 5</option>
                         </select>
-                        <label>
-                            <span class="required">*</span>
-                        </label>
+                        
                         <span class="error">Please select a doctor</span>
                     </div>
 
@@ -139,6 +148,7 @@
                             <option value="09:00-10:00">09:00 AM - 10:00 AM</option>
                             <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
                             <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+                            <option value="12:00-1:00">12:00 AM - 1:00 PM</option>
                             <option value="14:00-15:00">02:00 PM - 03:00 PM</option>
                             <option value="15:00-16:00">03:00 PM - 04:00 PM</option>
                             <option value="16:00-17:00">04:00 PM - 05:00 PM</option>
@@ -161,12 +171,12 @@
 
                     <div class="next_form">
                         <button type="button" class="btn prev_btn" id="prev2">Previous</button>
-                        <button type="button" class="btn btn next_btn" id="next2">Next</button>
+                        <button type="button" class="btn next_btn" id="next2">Next</button>
                     </div>
                 </div>
                 
-                <div class="form_step" step="3">
-                    <h2>Medical Information</h2>
+                <div class="form_step " step="3">
+                    <h2 class="medicalInfoHeader">Medical Information</h2>
 
                     <div class="form">
                         <label>Current Concerns <span class="required">*</span></label>
@@ -248,11 +258,11 @@
                     </div>
                 </div>
 
-                <div class="form_step" step="4" >
-                    <h2>Final Details</h2>
+                <div class="form_step active" step="4" >   
+                    <h2 class="finalDetailHeader">Final Details</h2>
                     <div class="form">
                         <label>Previous Medical Record <span class="required">*</span></label>
-                        <div class="radio">
+                        <div class="radio_groups">
                             <div class="radio_items">
                                 <input 
                                     type="radio" 
@@ -262,7 +272,7 @@
                                 >
                                 <label for="record1">X-rays</label>
                             </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioMedicalRecords" 
@@ -271,7 +281,7 @@
                                 >
                                 <label for="record2">MRIs</label>
                             </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioMedicalRecords" 
@@ -280,7 +290,7 @@
                                 >
                                 <label for="Ultrasound recordings">cancer</label>
                             </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioMedicalRecords" 
@@ -289,7 +299,7 @@
                                 >
                                 <label for="record4">Mammograms</label>
                             </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioMedicalRecords" 
@@ -304,7 +314,7 @@
 
                     <div class="form">
                         <label>Consultation Type<span class="required">*</span></label>
-                        <div class="radio">
+                        <div class="radio_groups">
                             <div class="radio_items">
                                 <input 
                                     type="radio" 
@@ -312,51 +322,102 @@
                                     id="counsultingType1" 
                                     value="Routine/Follow-up"
                                 >
-                                <label for="Routine/Follow-up">X-rays</label>
+                                <label for="counsultingType1">Routine/Follow-up</label>
                             </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioCousultationType" 
                                     id="counsultingType2" 
                                     value="Urgent/Acute"
                                 >
-                                <label for="Urgent/Acute">MRIs</label>
+                                <label for="counsultingType2">Urgent/Acute</label>
                             </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioCousultationType" 
                                     id="counsultingType3" 
                                     value="Specialist/Inter-Physicians"
                                 >
-                                <label for="Specialist/Inter-Physician">cancer</label>
+                                <label for="counsultingType3">Specialist/Inter-Physicians</label>
                             </div>
-                            <div class="checkbox_items">
-                                <input 
-                                    type="radio" 
-                                    name="radioCousultationType" 
-                                    id="counsultingType4" 
-                                    value="Telemedicine"
-                                >
-                                <label for="Telemedicine">Mammograms</label>
-                            </div>
-                            <div class="checkbox_items">
+                            <div class="radio_items">
                                 <input 
                                     type="radio" 
                                     name="radioCousultationType" 
                                     id="counsultingType5" 
                                     value="others"
                                 >
-                                <label for="record5">others</label>
+                                <label for="counsultingType5">others</label>
                             </div>
                         </div>
                         <span class="error">Please select at least one medical record</span>
                     </div>
 
-                    Consultation Type
+                    <div class="form">
+                        <label>Accept terms</label>
+                        <br>
+                        <a href="termsAndCondition.html" class="termsAndConditions">terms and conditions</a>
+                        <div class="checkbox_group">
+                            <div class="checkbox_items">
+                                <input 
+                                    type="checkbox" 
+                                    name="terms" 
+                                    id="term1" 
+                                    value="term1"
+                                    required
+                                >
+                                <label for="term1">I have read and understand the above information and agree to the terms.</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input
+                                    type="checkbox" 
+                                    name="terms" 
+                                    id="term2" 
+                                    value="term2"
+                                    required
+                                >
+                                <label for="term2">Consent to the Use and Disclosure of Protected Health Information (PHI).</label>
+                            </div>
+                            <span class="error">You must accept the terms and conditions</span>
+                        </div>
+                    </div>
+
+                    <div class="next_form">
+                        <button type="button" class="btn prev_btn" id="prev4">Previous</button>
+                        <button type="submit" class="btn submit_btn" id="submitBtn">Submit Appointment</button>
+                    </div>
+                </div>
+
+                <div class="form_step">
+                        <label>Notification Method <span class="required">*</span></label>
+                        <div class="checkbox_group">
+                            <div class="checkbox_items">
+                                <input type="checkbox" name="notification" id="notif1" value="Email">
+                                <label for="notif1">Email</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input type="checkbox" name="notification" id="notif2" value="SMS">
+                                <label for="notif2">SMS</label>
+                            </div>
+                            <div class="checkbox_items">
+                                <input type="checkbox" name="notification" id="notif3" value="Phone Call">
+                                <label for="notif3">Phone Call</label>
+                            </div>
+                        </div>
+                        <span class="error">Please select at least one notification method</span>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal_content">
+            <div class="success_icon">✔</div>
+            <h2>Appointment Booked!</h2>
+            <p>Your appointment has been successfully submitted. You will receive a confirmation via your selected notification method.</p>
+            <button class="btn" onclick="closeModal()">Close</button>
         </div>
     </div>
     
