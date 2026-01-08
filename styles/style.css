@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
- }
+}
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -110,6 +110,7 @@ body {
         opacity: 0;
         transform: translateX(30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -123,8 +124,7 @@ body {
 .form_step .basicInfo,
 .form_step .appointmentDetailsHeader,
 .form_step .medicalInfoHeader,
-.form_step .finalDetailHeader
-{
+.form_step .finalDetailHeader {
     color: #2e7d32;
     font-size: 26px;
     margin-bottom: 10px;
@@ -137,7 +137,7 @@ body {
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 15px;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
 }
 
 .form_step .form #email:focus {
@@ -162,6 +162,32 @@ body {
     color: #f44336;
 }
 
+.phone_input_group {
+    display: flex;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.phone_prefix {
+    margin-top: 10px;
+    width: 130px;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.phone_prefix:focus {
+    outline: none;
+    border: 2px solid green;
+}
+
+.phone_input_group #phone {
+    flex: 1;
+    margin-top: 0;
+}
+
 .right_part .form #name,
 .right_part .form #phone,
 .right_part .form #lastVisit,
@@ -171,14 +197,14 @@ body {
 .right_part .form #resonForVisit,
 .right_part .form #medications,
 .right_part .form #allergies
- {
+{
     margin-top: 10px;
     width: 100%;
     padding: 14px;
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 15px;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
 }
 
 .form_step .form #name:focus,
@@ -188,13 +214,12 @@ body {
 .right_part .form #timeSlot:focus,
 .right_part .form #resonForVisit:focus,
 .right_part .form #medications,
-.right_part .form #allergies
-{
+.right_part .form #allergies {
     outline: none;
     border: 2px solid green;
 }
 
-.next_form  button{
+.next_form button {
     margin-top: 10px;
     padding: 17px 36px;
     background-color: #4caf50;
@@ -245,3 +270,184 @@ body {
     cursor: pointer;
 }
 
+#successModal {
+    position: relative;
+    width: 28%;
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid green;
+}
+
+.modal_content .success_icon {
+    width: 80px;
+    height: 80px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 35% 20px;
+    color: white;
+    font-size: 40px;
+}
+
+.modal-content h2 {
+    margin-left: 15px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.modal_content p {
+    margin-left: 25px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal_content button {
+
+    margin: 10px 40px 0 2px;
+    padding: 17px 36px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.modal_content .btn:hover {
+    background: #388e3c;
+}
+
+#successModal {
+    position: fixed;
+    width: 28%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    border: 2px solid green;
+    background: white;
+    display: none;
+}
+
+#successModal.show {
+    display: block;
+}
+
+.modal_content .success_icon {
+    width: 80px;
+    height: 80px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 35% 20px;
+    color: white;
+    font-size: 40px;
+}
+
+.modal_content h2 {
+    margin-left: 15px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.modal_content p {
+    margin-left: 25px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal_content button {
+    margin: 10px 40px 0 2px;
+    padding: 17px 36px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.modal_content .btn:hover {
+    background: #388e3c;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .main_container {
+        flex-direction: column;
+        gap: 0;
+        border-radius: 20px;
+    }
+
+    .left_part {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .progress_section {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 15px;
+    }
+
+    .progress_items {
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .progress_step_info h3 {
+        font-size: 12px;
+    }
+
+    .right_part {
+        padding: 30px 20px;
+    }
+
+    .form_step .basicInfo,
+    .form_step .appointmentDetailsHeader,
+    .form_step .medicalInfoHeader,
+    .form_step .finalDetailHeader {
+        font-size: 22px;
+    }
+
+    .next_form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .next_form button {
+        width: 100%;
+    }
+
+    .radio_groups {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #successModal {
+        width: 90%;
+    }
+
+    .modal_content .success_icon {
+        margin: 0 auto 20px;
+    }
+
+    .modal_content h2,
+    .modal_content p {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .modal_content button {
+        margin: 10px 0 0 0;
+        width: 100%;
+    }
+}
