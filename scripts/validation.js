@@ -2,13 +2,19 @@ import {showError,showGroupError,clearError,clearGroupError} from './error.js'
 
 
 function validateEmail(email) {
-    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regex = /^[a-zA-Z0-9_%+-][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
     return regex.test(email);
 }
 
 function validatePhone(phone) {
-    let regex = /^[0-9]{10}$/;
+    const regex = /^[1-9][0-9]{9}$/;
     return regex.test(phone.replace(/[\s\-]/g, ''));
+}
+
+function validateName(name) {
+    const regex = /^[a-zA-Z\s]+$/;
+    return regex.test(name);
 }
 
 export function validateStep1() {
@@ -36,12 +42,17 @@ export function validateStep1() {
         showError('name', 'Name must be at least 2 characters');
         isValid = false;
     } 
+    else if (!validateName(name)) {
+        showError('name', 'Name can only contain letters and spaces');
+        isValid = false
+    }       
     else {
         clearError('name');
     }
-    
-    let phone = document.getElementById('phone').value.trim();
-    if (!phone) {
+ 
+    let phone = document.getElementById('phone').value.trim()
+    console.log("Current phone value:", phone);
+    if (!phone || phone.trim() === "") {
         showError('phone', 'Phone number is required');
         isValid = false;
     } 
@@ -51,6 +62,26 @@ export function validateStep1() {
     } 
     else {
         clearError('phone');
+    }
+    
+
+    let lastVisitField = document.getElementById('lastVisit');
+    if (lastVisitField) {
+        const today = new Date().toISOString().split('T')[0];
+        lastVisitField.setAttribute('max', today);
+
+        lastVisitField.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const todayDate = new Date();
+            todayDate.setHours(0, 0, 0, 0);
+
+            if (selectedDate >= todayDate) {
+                showError('lastVisit', 'Last visit date must be in the past');
+                isValid = false
+            } else {
+                clearError('lastVisit');
+            }
+        });
     }
     
     return isValid;
