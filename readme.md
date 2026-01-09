@@ -36,7 +36,7 @@
 
 **Images**
 
-![page 1](public\Assets\page1.png)
-![page 2](public\Assets\page2.png)
-![page 3](public\Assets\page3.png)
-![page 4](public\Assets\page4.png)
+![page 1](./public/Assets/page1.png)
+![page 2](./public/Assets/page2.png)
+![page 3](./public/Assets/page3.png)
+![page 4](./public/Assets/page4.png)
