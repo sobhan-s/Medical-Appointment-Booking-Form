@@ -15,3 +15,9 @@ export function saveAppointment(formData) {
     
     console.log('Appointment saved:', formData);
 }
+
+export function getAppointmentData() {
+    const data = localStorage.getItem("appointments")
+
+    console.log(JSON.parse(data));   
+}

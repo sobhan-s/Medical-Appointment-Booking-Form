@@ -86,7 +86,7 @@ body {
     color: white;
 }
 
-.progress_items.complited .progress_step_number::before {
+.progress_items.complited .progress_step_number::after {
     content: '✓';
 }
 

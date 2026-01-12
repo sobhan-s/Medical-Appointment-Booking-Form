@@ -1,6 +1,6 @@
 import {validateStep1,validateStep2,validateStep3,validateStep4} from './validation.js'
 import {getFormData} from './formData.js'
-import {saveAppointment} from "./localDb.js"
+import {getAppointmentData, saveAppointment} from "./localDb.js"
 
 let currentStep = 1;
 let totalSteps = 4;
@@ -54,6 +54,7 @@ function checkDuplicateAppointment(email, phone, appointmentDate) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    getAppointmentData();
     
     document.getElementById('next1').addEventListener('click', function() {
         if (validateStep1()) {
