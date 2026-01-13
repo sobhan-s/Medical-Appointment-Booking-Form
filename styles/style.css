@@ -5,15 +5,23 @@
 }
 
 body {
-    font-family:  Tahoma, Geneva, 'Verdana', sans-serif;
+    font-family:  'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
     background: linear-gradient(180deg, #32df66b2, #32df6642);
     min-height: 100vh;
     padding: 20px;
+    /* overflow: hidden; */
 }
+
+.primeContainer {
+    display: flex;
+    flex-direction: row;
+}
+
     
 .main_container {
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-direction: column;
+    max-width: 420px;
+    margin: 0 ;
     display: flex;
     gap: 0;
     background: white;
@@ -22,9 +30,9 @@ body {
 }
 
 .left_part {
-    width: 300px;
+    width: 100%;
     background: linear-gradient(180deg, #2e7d32, #1b5e20);
-    padding: 40px 24px;
+    padding: 24px 20px;
     color: white;
 }
 
@@ -35,15 +43,36 @@ body {
 }
 
 .left_part p {
-    font-size: 14px;
+    font-size: 20px;
     opacity: 0.9;
     margin-bottom: 32px;
 }
 
 .progress_section {
     display: flex;
-    flex-direction: column;
-    gap: 24px;
+    flex-direction: row;
+    gap: 16px;
+    padding-bottom: 8px;
+    overflow-x: auto;
+}
+
+.progress_section::-webkit-scrollbar {
+    width: 6px; 
+    height: 6px;
+}
+
+.progress_section::-webkit-scrollbar-track {
+  background: #ffffff7a;
+  border-radius: 8px;
+}
+
+.progress_section::-webkit-scrollbar-thumb {
+  background: #31303088;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.progress_section::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .progress_items {
@@ -206,11 +235,12 @@ body {
 }
 
 .phone_prefix {
-    width: 140px;
+    width: 90px;
     flex-shrink: 0;
     border-radius: 10px;
     border: 2px solid #e0e0e0;
     padding-left: 15px;
+    display: flex;
 }
 
 .phone_input_group .phone {
@@ -226,7 +256,8 @@ textarea {
 .checkbox_group,
 .radio_groups {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    cursor: pointer;
     gap: 12px;
     margin-top: 8px;
 }
@@ -235,6 +266,7 @@ textarea {
 .radio_items {
     display: flex;
     align-items: center;
+    cursor: pointer;
     gap: 10px;
     padding: 8px;
     border-radius: 6px;
@@ -283,6 +315,7 @@ textarea {
 }
 
 .btn {
+    width: 100%;
     padding: 12px 32px;
     border: none;
     border-radius: 8px;
@@ -414,6 +447,10 @@ textarea {
 @media (max-width: 768px) {
     body {
         padding: 0;
+    }
+
+    .primeContainer {
+        flex-direction: column;
     }
 
     .main_container {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Appointments</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Admin Dashboard</h1>
+            <p>Manage all patient appointments</p>
+        </div>
+
+        <div class="tableContainer" id="tableContainer">
+            <div class="tableWrapper">
+                <table id="appointmentsTable">
+                    <thead class="tableHead">
+                        <tr class="tableRow">
+                            <th>Appointment Date</th>
+                            <th>Time Slot</th>
+                            <th>Patient Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Doctor</th>
+                            <th>Reason For Visit</th>
+                            <th>Health Concerns</th>
+                            <th>Medication</th>
+                            <th>Allergies</th>
+                            <th>Medical Record</th>
+                            <th>Consultation</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/admin.js"></script>
+</body>
+</html>

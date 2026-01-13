@@ -1,9 +1,66 @@
 import {validateStep1,validateStep2,validateStep3,validateStep4} from './validation.js'
 import {getFormData} from './formData.js'
-import {getAppointmentData, saveAppointment} from "./localDb.js"
+import { saveAppointment} from "./localDb.js"
 
 let currentStep = 1;
 let totalSteps = 4;
+let isEditMode = false;
+let editIndex = null;
+
+const urlParams = new URLSearchParams(window.location.search);
+const editParam = urlParams.get('edit');
+console.log(editParam);
+
+
+if (editParam !== null) {
+    isEditMode = true;
+    editIndex = parseInt(editParam);
+    // console.log(editIndex);
+    
+    const appointments = sortAppointment()
+    console.log(appointments[editIndex]);
+    
+    if (appointments[editIndex]) {
+        preFillForm(appointments[editIndex]);
+        document.getElementById('submit_btn').textContent = 'Update Appointment';
+    }
+}
+
+function preFillForm(data) {
+    document.getElementById('email').value = data.email || '';
+    document.getElementById('name').value = data.name || '';
+    document.getElementById('phonePrefix').value = data.phonePrefix || '+91';
+    document.getElementById('phone').value = data.phone || '';
+    document.getElementById('lastVisit').value = data.lastVisit || '';
+    document.getElementById('doctor').value = data.doctor || '';
+    document.getElementById('appointmentDate').value = data.appointmentDate || '';
+    document.getElementById('timeSlot').value = data.timeSlot || '';
+    document.getElementById('resonForVisit').value = data.resonForVisit || '';
+    if (data.healthConcerns && Array.isArray(data.healthConcerns)) {
+        data.healthConcerns.forEach(concern => {
+            const checkbox = document.querySelector(`input[name="healthConcerns"][value="${concern}"]`);
+            if (checkbox) checkbox.checked = true;
+        });
+    }
+    document.getElementById('medications').value = data.medications || '';
+    document.getElementById('allergies').value = data.allergies || '';
+    if (data.medicalRecord) {
+        const recordRadio = document.querySelector(`input[name="radioMedicalRecords"][value="${data.medicalRecord}"]`);
+        if (recordRadio) recordRadio.checked = true;
+    }
+    if (data.consultationType) {
+        const consultRadio = document.querySelector(`input[name="radioCousultationType"][value="${data.consultationType}"]`);
+        if (consultRadio) consultRadio.checked = true;
+    }
+    document.getElementById('term1').checked = true;
+    document.getElementById('term2').checked = true;
+    if (data.notifications && Array.isArray(data.notifications)) {
+        data.notifications.forEach(notif => {
+            const checkbox = document.querySelector(`input[name="notification"][value="${notif}"]`);
+            if (checkbox) checkbox.checked = true;
+        });
+    }
+}
 
 function showStep(stepNumber) {
     let allSteps = document.querySelectorAll('.form_step');
@@ -54,7 +111,7 @@ function checkDuplicateAppointment(email, phone, appointmentDate) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    getAppointmentData();
+    // getAppointmentData();
     
     document.getElementById('next1').addEventListener('click', function() {
         if (validateStep1()) {
@@ -125,7 +182,11 @@ document.addEventListener('DOMContentLoaded', function() {
         modalBtn.addEventListener('click', function() {
             let modal = document.getElementById('successModal');
             modal.classList.remove('show');
+            loadAppointments()
         });
+        
     }
     showStep(currentStep);
 });
+
+window.preFillForm = preFillForm

@@ -1,0 +1,190 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    min-height: 100vh;
+    padding: 20px;
+} */
+
+.container {
+    max-width: 1000px;
+    margin: 0 20px;
+}
+
+.header {
+    background: linear-gradient(90deg, #2e7d32 0%, #1b5e20 100%);
+    color: white;
+    padding: 33px 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 16px;
+}
+
+.tableContainer {
+    background: white;
+    border-radius: 20px;
+    padding: 5px;
+    overflow-x: auto;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.tableWrapper::-webkit-scrollbar {
+    width: 6px; 
+    height: 6px;
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background: #ffffff7a;
+  border-radius: 8px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background: #31303088;
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* .tableWrapper::-webkit-scrollbar-thumb:hover {
+  background: none;
+} */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+}
+
+.tableHead {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    color: white;
+}
+
+thead th {
+    padding: 16px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.tableRow {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+    background: #f5f5f5;
+}
+
+tbody td {
+    padding: 16px 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+.update_btn,
+.delete_btn {
+    padding: 4px 6px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-right: 5px;
+}
+
+.internalBtn {
+    display: flex;
+    flex-direction: row;
+}
+
+.update {
+    /* background: #4caf50; */
+    color: white;
+}
+
+.update:hover {
+    background: rgb(139, 139, 231);
+    transform: translateY(-2px);
+}
+
+.delete {
+    /* background: #f44336; */
+    color: white;
+}
+
+.delete:hover {
+    background: #c74949;
+    transform: translateY(-2px);
+}
+
+.healthConcerns .eachHealthTag{
+    width: auto;
+    height: 20px;
+    background-color: #529757;
+    color: white;
+    border-radius: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.noAppointment {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.noAppointment h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .tableContainer {
+        padding: 15px;
+    }
+
+    tbody td,
+    thead th {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+
+    .btn {
+        padding: 2px 4px;
+        font-size: 5px;
+    }
+}
