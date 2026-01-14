@@ -21,6 +21,7 @@ body {
 .main_container {
     flex-direction: column;
     max-width: 420px;
+    max-height: auto;
     margin: 0 ;
     display: flex;
     gap: 0;
