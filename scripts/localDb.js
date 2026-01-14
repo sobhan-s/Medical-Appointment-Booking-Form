@@ -1,4 +1,4 @@
-export function saveAppointment(formData) {
+export function saveAppointment(formData,isEdit,editIndex) {
     let appointments = localStorage.getItem('appointments');
     
     if (!appointments) {
@@ -6,13 +6,18 @@ export function saveAppointment(formData) {
     } else {
         appointments = JSON.parse(appointments);
     }
-    
-    formData.submittedAt = new Date().toISOString();
-    formData.id = 'Appointment-' + Date.now();
-    
-    appointments.push(formData);
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-    
-    console.log('Appointment saved:', formData);
+
+    if(formData[editIndex] != null && isEdit == true) {
+        appointments[editIndex] = formData;
+    }
+    else {
+        formData.submittedAt = new Date().toISOString();
+        formData.id = 'appointment' + Date.now();
+        
+        appointments.push(formData);
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+        
+        console.log('Appointment saved:', formData);
+    }
 }
 

@@ -3,7 +3,6 @@ import {showError,showGroupError,clearError,clearGroupError} from './error.js'
 
 function validateEmail(email) {
     const regex = /^[a-zA-Z0-9_%+-][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-
     return regex.test(email);
 }
 
@@ -51,7 +50,6 @@ export function validateStep1() {
     }
  
     let phone = document.getElementById('phone').value.trim()
-    console.log("Current phone value:", phone);
     if (!phone || phone.trim() === "") {
         showError('phone', 'Phone number is required');
         isValid = false;
@@ -64,24 +62,24 @@ export function validateStep1() {
         clearError('phone');
     }
     
-
     let lastVisitField = document.getElementById('lastVisit');
-    if (lastVisitField) {
-        const today = new Date().toISOString().split('T')[0];
-        lastVisitField.setAttribute('max', today);
+    if (lastVisitField && lastVisitField.value) {
+        const selectedDate = new Date(lastVisitField.value);
+        const todayDate = new Date();
+        todayDate.setHours(0, 0, 0, 0);
 
-        lastVisitField.addEventListener('change', function() {
-            const selectedDate = new Date(this.value);
-            const todayDate = new Date();
-            todayDate.setHours(0, 0, 0, 0);
-
-            if (selectedDate >= todayDate) {
-                showError('lastVisit', 'Last visit date must be in the past');
-                isValid = false
-            } else {
-                clearError('lastVisit');
-            }
-        });
+        if (selectedDate >= todayDate) {
+            showError('lastVisit', 'Last visit date must be in the past');
+            isValid = false;
+        } else {
+            clearError('lastVisit');
+        }
+    }
+    
+    // Enable or disable next button
+    let nextBtn = document.getElementById('next1');
+    if (nextBtn) {
+        nextBtn.disabled = !isValid;
     }
     
     return isValid;
@@ -134,6 +132,11 @@ export function validateStep2() {
         clearError('resonForVisit');
     }
     
+    let nextBtn = document.getElementById('next2');
+    if (nextBtn) {
+        nextBtn.disabled = !isValid;
+    }
+    
     return isValid;
 }
 
@@ -146,6 +149,11 @@ export function validateStep3() {
         isValid = false;
     } else {
         clearGroupError('healthConcerns');
+    }
+    
+    let nextBtn = document.getElementById('next3');
+    if (nextBtn) {
+        nextBtn.disabled = !isValid;
     }
     
     return isValid;
@@ -187,5 +195,17 @@ export function validateStep4() {
         clearGroupError('notification');
     }
     
+    let submitBtn = document.getElementById('submitBtn');
+    if (submitBtn) {
+        submitBtn.disabled = !isValid;
+    }
+    
     return isValid;
+}
+
+export function allValidationSteps() {
+    validateStep1();
+    validateStep2();
+    validateStep3();
+    validateStep4();
 }

@@ -69,16 +69,15 @@ function renderTable(appointments) {
 }
 
 function deleteRowData(index) {
-    alert("clicked")
+    alert("Do u want to delte the reocord !")
     const appointments = sortAppointment();
     appointments.splice(index, 1); 
     localStorage.setItem('appointments', JSON.stringify(appointments));
-    alert('Appointment removed permanently!');
     loadAppointments();
 }
 
 function updateRowData(index) {    
-    const indexPage = 'http://127.0.0.1:5500/index.html'
+    const indexPage = 'index.html'
 
     const params = {
         edit: index

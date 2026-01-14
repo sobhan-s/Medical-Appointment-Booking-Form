@@ -1,4 +1,5 @@
-import {validateStep1,validateStep2,validateStep3,validateStep4} from './validation.js'
+
+import {validateStep1,validateStep2,validateStep3,validateStep4,allValidationSteps} from './validation.js'
 import {getFormData} from './formData.js'
 import { saveAppointment} from "./localDb.js"
 
@@ -11,31 +12,18 @@ const urlParams = new URLSearchParams(window.location.search);
 const editParam = urlParams.get('edit');
 console.log(editParam);
 
-
-if (editParam !== null) {
-    isEditMode = true;
-    editIndex = parseInt(editParam);
-    // console.log(editIndex);
-    
-    const appointments = sortAppointment()
-    console.log(appointments[editIndex]);
-    
-    if (appointments[editIndex]) {
-        preFillForm(appointments[editIndex]);
-        document.getElementById('submit_btn').textContent = 'Update Appointment';
-    }
-}
-
 function preFillForm(data) {
     document.getElementById('email').value = data.email || '';
     document.getElementById('name').value = data.name || '';
     document.getElementById('phonePrefix').value = data.phonePrefix || '+91';
     document.getElementById('phone').value = data.phone || '';
     document.getElementById('lastVisit').value = data.lastVisit || '';
+    
     document.getElementById('doctor').value = data.doctor || '';
     document.getElementById('appointmentDate').value = data.appointmentDate || '';
     document.getElementById('timeSlot').value = data.timeSlot || '';
     document.getElementById('resonForVisit').value = data.resonForVisit || '';
+    
     if (data.healthConcerns && Array.isArray(data.healthConcerns)) {
         data.healthConcerns.forEach(concern => {
             const checkbox = document.querySelector(`input[name="healthConcerns"][value="${concern}"]`);
@@ -110,8 +98,96 @@ function checkDuplicateAppointment(email, phone, appointmentDate) {
     return false;
 }
 
+function setupRealtimeValidation() {
+    document.getElementById('email').addEventListener('input', function() {
+        validateStep1();
+    });
+    document.getElementById('name').addEventListener('input', function() {
+        validateStep1();
+    });
+    document.getElementById('phone').addEventListener('input', function() {
+        validateStep1();
+    });
+    document.getElementById('lastVisit').addEventListener('change', function() {
+        validateStep1();
+    });
+    
+    document.getElementById('doctor').addEventListener('change', function() {
+        validateStep2();
+    });
+    document.getElementById('appointmentDate').addEventListener('change', function() {
+        validateStep2();
+    });
+    document.getElementById('timeSlot').addEventListener('change', function() {
+        validateStep2();
+    });
+    document.getElementById('resonForVisit').addEventListener('input', function() {
+        validateStep2();
+    });
+    
+    let healthCheckboxes = document.querySelectorAll('input[name="healthConcerns"]');
+    for (let i = 0; i < healthCheckboxes.length; i++) {
+        healthCheckboxes[i].addEventListener('change', function() {
+            validateStep3();
+        });
+    }
+    
+    let medicalRadios = document.querySelectorAll('input[name="radioMedicalRecords"]');
+    for (let i = 0; i < medicalRadios.length; i++) {
+        medicalRadios[i].addEventListener('change', function() {
+            validateStep4();
+        });
+    }
+    
+    let consultRadios = document.querySelectorAll('input[name="radioCousultationType"]');
+    for (let i = 0; i < consultRadios.length; i++) {
+        consultRadios[i].addEventListener('change', function() {
+            validateStep4();
+        });
+    }
+    
+    document.getElementById('term1').addEventListener('change', function() {
+        validateStep4();
+    });
+    document.getElementById('term2').addEventListener('change', function() {
+        validateStep4();
+    });
+    
+    let notifCheckboxes = document.querySelectorAll('input[name="notification"]');
+    for (let i = 0; i < notifCheckboxes.length; i++) {
+        notifCheckboxes[i].addEventListener('change', function() {
+            validateStep4();
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    // getAppointmentData();
+    setupRealtimeValidation();
+    
+    if (editParam !== null) {
+        isEditMode = true;
+        editIndex = parseInt(editParam);
+        
+        const appointments = sortAppointment()
+        console.log(appointments[editIndex]);
+        
+        if (appointments[editIndex]) {
+            preFillForm(appointments[editIndex]);
+            
+            let submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.textContent = 'Update Appointment';
+            }
+            
+            setTimeout(function() {
+                console.log('Running validations after prefill');
+                validateStep1();
+                validateStep2();
+                validateStep3();
+                validateStep4();
+            }, 200);
+        }
+    }
     
     document.getElementById('next1').addEventListener('click', function() {
         if (validateStep1()) {
@@ -128,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let fullPhone = phonePrefix + phone;
             let appointmentDate = document.getElementById('appointmentDate').value;
             
-            if (checkDuplicateAppointment(email, fullPhone, appointmentDate)) {
+            if (checkDuplicateAppointment(email, fullPhone, appointmentDate) && isEditMode != true) {
                 alert('⚠️ Duplicate Appointment Detected!\n\nYou already have an appointment scheduled on ' + appointmentDate );
                 return;
             }
@@ -166,14 +242,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (validateStep4()) {
             let formData = getFormData();
             
-            saveAppointment(formData);
+            if (isEditMode) {
+                saveAppointment(formData, true, editIndex);
+                // alert('Appointment updated successfully!');
+            } else {
+                saveAppointment(formData, false, null);
+            }
             
             let modal = document.getElementById('successModal');
+            const booked = document.querySelector(".booked")
+            booked.textContent = "updated."
+            const submitted = document.querySelector(".submitted")
+            submitted.textContent = 'updated'
             modal.classList.add('show');
+            // window.location.href = "index.html"
+            
             
             document.querySelector('.appointmentForm').reset();
             currentStep = 1;
             showStep(currentStep);
+            
+            isEditMode = false;
+            editIndex = null;
         }
     });
     
@@ -182,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalBtn.addEventListener('click', function() {
             let modal = document.getElementById('successModal');
             modal.classList.remove('show');
-            loadAppointments()
+            window.location.href = "index.html"
         });
         
     }
