@@ -14,7 +14,7 @@ export function getFormData() {
     formData.resonForVisit = document.getElementById('resonForVisit').value.trim();
     
     let healthConcerns = document.querySelectorAll('input[name="healthConcerns"]:checked');
-    formData.healthConcerns = [];
+    formData.healthConcerns = [];      
     for (let i = 0; i < healthConcerns.length; i++) {
         formData.healthConcerns.push(healthConcerns[i].value);
     }
