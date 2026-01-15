@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/utils/error.ts","./src/utils/formdata.ts","./src/validation/validation.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/db/localdb.ts","./src/lib/reuse.ts","./src/types/alltypes.ts","./src/utils/error.ts","./src/utils/formdata.ts","./src/utils/validation.ts","./src/validation/validation.ts"],"version":"5.9.3"}
