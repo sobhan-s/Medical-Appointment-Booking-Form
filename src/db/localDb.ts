@@ -1,4 +1,4 @@
-import type {AppointmentFormData} from "../utils/formData.js"
+import type {AppointmentFormData} from "../types/Alltypes.js"
 
 export function saveAppointment({formData, isEdit, editIndex} : 
     {

@@ -1,29 +1,10 @@
-export interface AppointmentFormData {
-    email: string;
-    name: string;
-    phonePrefix: string;
-    phone: string;
-    fullPhone: string;
-    lastVisit: string;
-    doctor: string;
-    appointmentDate: string;
-    timeSlot: string;
-    resonForVisit: string;
-    healthConcerns: string[];
-    medications: string;
-    allergies: string;
-    medicalRecord: string;
-    consultationType: string;
-    termsAccepted: boolean;
-    notifications: string[];
-    submittedAt: string;
-    id : string;
-}
+import type {AppointmentFormData} from "../types/Alltypes.js"
+import {commonGetValue} from "../lib/reuse.js"
 
 export function getFormData(): AppointmentFormData {
     const formData = {} as AppointmentFormData;
 
-    const commonGetValue = (id: string) => (document.getElementById(id) as HTMLInputElement)?.value.trim() || '';
+    // const commonGetValue = (id: string) => (document.getElementById(id) as HTMLInputElement)?.value.trim() || '';
 
     formData.email = commonGetValue('email');
     formData.name = commonGetValue('name');
