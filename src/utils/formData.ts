@@ -1,4 +1,4 @@
-interface AppointmentFormData {
+export interface AppointmentFormData {
     email: string;
     name: string;
     phonePrefix: string;
