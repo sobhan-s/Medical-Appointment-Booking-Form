@@ -1,0 +1,33 @@
+{
+  "name": "pratice_html",
+  "version": "1.0.0",
+  "description": "***Project Strture:***",
+  "main": "index.js",
+    "type": "module",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "dev": "nodemon",
+    "build": "tsc -b",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sobhan-s/pratice_html.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sobhan-s/pratice_html/issues"
+  },
+  "homepage": "https://github.com/sobhan-s/pratice_html#readme",
+  "dependencies": {
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.8",
+    "@types/typescript": "^0.4.29"
+  }
+}
