@@ -16,6 +16,6 @@ export interface AppointmentFormData {
     consultationType: string;
     termsAccepted: boolean;
     notifications: string[];
-    submittedAt: string;
-    id : string;
+    submittedAt?: string | undefined;
+    id ?: string | undefined;
 }
