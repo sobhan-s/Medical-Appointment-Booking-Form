@@ -16,6 +16,8 @@ export interface AppointmentFormData {
     consultationType: string;
     termsAccepted: boolean;
     notifications: string[];
+    submittedAt: string;
+    id : string;
 }
 
 export function getFormData(): AppointmentFormData {
