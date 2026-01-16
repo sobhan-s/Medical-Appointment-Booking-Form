@@ -1,7 +1,7 @@
 import {validateStep1,validateStep2,validateStep3,validateStep4,allValidationSteps,} from "./validation/validation.js"
 import {getFormData} from "./utils/formData.js"
 import {saveAppointment} from "./db/localDb.js"
-import type { AppointmentFormData } from "./types/Alltypes.js";
+import type { AppointmentFormData } from "./types/AllTypes.js";
 import {sortAppointment} from "./lib/reuse.js"
 
 let currentStep : number = 1;
@@ -97,15 +97,22 @@ function checkDuplicateAppointment({email, phone, appointmentDate} : {
 }) {
     let appointments = sortAppointment() as AppointmentFormData[];
 
-    if (!appointments) {
+    if (!appointments || appointments.length === 0) {
         return false;
     }
 
-    appointments.forEach(eachRowData => {
-        if ((eachRowData.email === email || eachRowData.phone === phone) && eachRowData.appointmentDate === appointmentDate) {
+    for (let i = 0; i < appointments.length; i++) {
+        const eachRowData = appointments[i] as AppointmentFormData;
+        
+        if (isEditMode && editIndex !== null && i === editIndex) {
+            continue;
+        }
+        
+        if ((eachRowData.email === email || eachRowData.phone === phone) && 
+            eachRowData.appointmentDate === appointmentDate) {
             return true;
         }
-    })
+    }
     
     return false;
 }
@@ -232,21 +239,22 @@ function renderTable(appointments : AppointmentFormData[]) {
 }
 
 function deleteRowData(index : number) {
-    alert("Do u want to delte the reocord !")
-    const appointments = sortAppointment() as AppointmentFormData[]
-    appointments.splice(index, 1); 
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-    loadAppointments();
+    if (confirm("Do you want to delete this record?")) {
+        const appointments = sortAppointment() as AppointmentFormData[]
+        appointments.splice(index, 1); 
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+        loadAppointments();
+    }
 }
 
 function updateRowData(index : number) {    
     const indexPage = 'index.html'
 
     const params  = {
-        edit: index as unknown as string
+        edit: index.toString()
     } 
 
-    const queryString = new URLSearchParams(params ).toString()
+    const queryString = new URLSearchParams(params).toString()
 
     const newUrl = `${indexPage}?${queryString}`
 
@@ -273,20 +281,23 @@ document.addEventListener('DOMContentLoaded', function() {
     if (editParam !== null) {
         isEditMode = true;
         editIndex = parseInt(editParam);
-
-        if(!editIndex) return;
         
         const appointments = sortAppointment() as AppointmentFormData[];
-        console.log(appointments[editIndex]);
         
-        if (appointments[editIndex] && editIndex) {
-            preFillForm((appointments[editIndex]) as AppointmentFormData);
+        // Check if editIndex is valid (including 0)
+        if (editIndex >= 0 && appointments[editIndex]) {
+            console.log('Editing appointment at index:', editIndex);
+            console.log('Appointment data:', appointments[editIndex]);
             
+            preFillForm(appointments[editIndex] as AppointmentFormData);
+            
+            // Update submit button text
             let submitBtn = document.getElementById('submitBtn');
             if (submitBtn) {
                 submitBtn.textContent = 'Update Appointment';
             }
             
+            // Run validations after prefill
             setTimeout(function() {
                 console.log('Running validations after prefill');
                 validateStep1();
@@ -312,8 +323,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let phone : string = phonePrefix + phoneNo;
             let appointmentDate = (document.getElementById('appointmentDate') as HTMLInputElement).value;
             
-            if (checkDuplicateAppointment({email, phone, appointmentDate}) && isEditMode != true) {
-                alert('⚠️ Duplicate Appointment Detected!\n\nYou already have an appointment scheduled on ' + appointmentDate );
+            if (checkDuplicateAppointment({email, phone, appointmentDate}) && isEditMode == false) {
+                alert('⚠️ Duplicate Appointment Detected!\n\nYou already have an appointment scheduled on ' + appointmentDate);
                 return;
             }
             
@@ -350,23 +361,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (validateStep4()) {
             let formData = getFormData();
             
-            if (isEditMode) {
-                let isEdit = true;
-                saveAppointment({formData, isEdit, editIndex});
-                // alert('Appointment updated successfully!');
+            let modal = document.getElementById('successModal') as HTMLElement;
+            const booked = document.querySelector(".booked") as HTMLElement;
+            const submitted = document.querySelector(".submitted") as HTMLElement;
+            
+            if (isEditMode && editIndex !== null) {
+                saveAppointment({formData, isEdit: true, editIndex});
+                
+                // Update modal text for update
+                if (booked) booked.textContent = "updated.";
+                if (submitted) submitted.textContent = 'updated';
             } else {
-                let isEdit = false;
-                saveAppointment({formData, isEdit, editIndex : null});
+                saveAppointment({formData, isEdit: false, editIndex: null});
+                
+                // Update modal text for new appointment
+                if (booked) booked.textContent = "booked.";
+                if (submitted) submitted.textContent = 'submitted';
             }
             
-            let modal = document.getElementById('successModal') as Element;
-            const booked = document.querySelector(".booked") as Element
-            booked.textContent = "updated."
-            const submitted = document.querySelector(".submitted") as Element
-            submitted.textContent = 'updated'
             modal.classList.add('show');
-            // window.location.href = "index.html"
-            
             
             (document.querySelector('.appointmentForm') as HTMLFormElement).reset();
             currentStep = 1;

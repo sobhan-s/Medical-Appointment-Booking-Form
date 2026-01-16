@@ -1,4 +1,4 @@
-import type { AppointmentFormData } from "../types/Alltypes.js";
+import type { AppointmentFormData } from "../types/AllTypes.js";
 
 export const commonGetValue = (id: string) => (document.getElementById(id) as HTMLInputElement)?.value.trim() || '';
 

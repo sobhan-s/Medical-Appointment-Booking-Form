@@ -64,8 +64,6 @@ function renderTable(appointments) {
             </td>
         </tr>
     `).join('');
-
-   
 }
 
 function deleteRowData(index) {
