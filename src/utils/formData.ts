@@ -4,8 +4,6 @@ import {commonGetValue} from "../lib/reuse.js"
 export function getFormData(): AppointmentFormData {
     const formData = {} as AppointmentFormData;
 
-    // const commonGetValue = (id: string) => (document.getElementById(id) as HTMLInputElement)?.value.trim() || '';
-
     formData.email = commonGetValue('email');
     formData.name = commonGetValue('name');
     formData.phonePrefix = (document.getElementById('phonePrefix') as HTMLSelectElement).value;

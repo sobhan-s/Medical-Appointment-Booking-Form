@@ -284,20 +284,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const appointments = sortAppointment() as AppointmentFormData[];
         
-        // Check if editIndex is valid (including 0)
         if (editIndex >= 0 && appointments[editIndex]) {
             console.log('Editing appointment at index:', editIndex);
             console.log('Appointment data:', appointments[editIndex]);
             
             preFillForm(appointments[editIndex] as AppointmentFormData);
             
-            // Update submit button text
             let submitBtn = document.getElementById('submitBtn');
             if (submitBtn) {
                 submitBtn.textContent = 'Update Appointment';
             }
             
-            // Run validations after prefill
             setTimeout(function() {
                 console.log('Running validations after prefill');
                 validateStep1();
