@@ -20,7 +20,7 @@ body {
     
 .main_container {
     flex-direction: column;
-    max-width: 420px;
+    max-width: 620px;
     max-height: auto;
     margin: 0 ;
     display: flex;
@@ -457,6 +457,7 @@ textarea {
     .main_container {
         flex-direction: column;
         border-radius: 0;
+        max-width: 800px;   
     }
 
     .left_part {

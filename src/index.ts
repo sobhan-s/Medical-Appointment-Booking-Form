@@ -1,11 +1,11 @@
 import {validateStep1,validateStep2,validateStep3,validateStep4,allValidationSteps,} from "./validation/validation.js"
 import {getFormData} from "./utils/formData.js"
 import {saveAppointment} from "./db/localDb.js"
-import type { AppointmentFormData } from "./types/AllTypes.js";
+import type { AppointmentFormData } from "./types/Alltypes.js";
 import {sortAppointment} from "./lib/reuse.js"
 
 let currentStep : number = 1;
-let totalSteps : number= 4;
+// let totalSteps : number= 4;
 let isEditMode : boolean = false;
 let editIndex : number | null = null;
 
@@ -219,11 +219,11 @@ function renderTable(appointments : AppointmentFormData[]) {
             <td><strong>${apt.name}</strong></td>
             <td>${apt.email}</td>
             <td>${apt.phone}</td>
-            <td>${apt.doctor}</td>
+            <td class="doctor">${apt.doctor}</td>
             <td>${apt.resonForVisit}</td>
             <td class="healthConcerns">${apt.healthConcerns.map(eachHealthConcern => 
                 `<span class="eachHealthTag">${eachHealthConcern}</span>`
-            ).join(', ')}</td>
+            ).join(' ')}</td>
             <td>${apt.medications || '-'}</td>
             <td>${apt.allergies || '-'}</td>
             <td>${apt.medicalRecord}</td>
@@ -285,8 +285,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const appointments = sortAppointment() as AppointmentFormData[];
         
         if (editIndex >= 0 && appointments[editIndex]) {
-            console.log('Editing appointment at index:', editIndex);
-            console.log('Appointment data:', appointments[editIndex]);
+            // console.log('index kandskfnasdinfadsfads:', editIndex);
+            // console.log('appt adfasdif:', appointments[editIndex]);
             
             preFillForm(appointments[editIndex] as AppointmentFormData);
             
@@ -365,13 +365,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isEditMode && editIndex !== null) {
                 saveAppointment({formData, isEdit: true, editIndex});
                 
-                // Update modal text for update
                 if (booked) booked.textContent = "updated.";
                 if (submitted) submitted.textContent = 'updated';
             } else {
                 saveAppointment({formData, isEdit: false, editIndex: null});
                 
-                // Update modal text for new appointment
                 if (booked) booked.textContent = "booked.";
                 if (submitted) submitted.textContent = 'submitted';
             }

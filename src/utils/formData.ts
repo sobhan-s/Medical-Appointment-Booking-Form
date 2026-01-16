@@ -1,4 +1,4 @@
-import type {AppointmentFormData} from "../types/AllTypes.js"
+import type {AppointmentFormData} from "../types/Alltypes.js"
 import {commonGetValue} from "../lib/reuse.js"
 
 export function getFormData(): AppointmentFormData {

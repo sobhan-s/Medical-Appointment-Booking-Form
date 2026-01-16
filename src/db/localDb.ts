@@ -1,11 +1,6 @@
-import type {AppointmentFormData} from "../types/AllTypes.js"
+import type {AppointmentFormData, saveAppointmentInerface} from "../types/Alltypes.js"
 
-export function saveAppointment({formData, isEdit, editIndex} : 
-    {
-        formData : AppointmentFormData,
-        isEdit : boolean,
-        editIndex : number | null
-    }
+export function saveAppointment({formData, isEdit, editIndex} : saveAppointmentInerface
 ) {
     let RawAppointments : string | null = localStorage.getItem('appointments');
 

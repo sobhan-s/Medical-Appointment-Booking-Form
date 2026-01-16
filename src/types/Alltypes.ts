@@ -19,3 +19,9 @@ export interface AppointmentFormData {
     submittedAt?: string | undefined;
     id ?: string | undefined;
 }
+
+export interface saveAppointmentInerface {
+    formData : AppointmentFormData;
+    isEdit : boolean;
+    editIndex : number | null
+}
